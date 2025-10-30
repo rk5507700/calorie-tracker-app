@@ -1,7 +1,7 @@
 # -----------------------------
 # Node.js dependencies
 # -----------------------------
-/node_modules/
+**/node_modules/
 package-lock.json
 yarn.lock
 
@@ -56,9 +56,4 @@ build/
 *.css.map
 *.js.map
 
-# -----------------------------
-# Misc
-# -----------------------------
-coverage/
-.env.local
-.env.*.local
+
