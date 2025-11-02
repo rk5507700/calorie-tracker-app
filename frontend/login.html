@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie | Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* margin-top: 15vh; */
+            gap: 25px;
+            border: solid black;
+            border-radius: 5px;
+            width: min(100%, 500px);
+            margin: 15vh auto 0vh auto;
+            padding: 10px 15px 10px 15px;
+            box-sizing: border-box;
+        }
+
+        body>div>button {
+            width: 100%;
+            height: 40px;
+        }
+
+        .input-fields {
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+            gap: 5px;
+            width: 100%;
+        }
+
+        .input-fields>input {
+            width: min(100%, 400px);
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="login-form">
+        <div class="login-form">
+            <h1 class="heading">Calorie</h1>
+            <div class="input-fields">
+                
+                <label for="user-email">Email-Id</label>
+                <input type="email" name="email" id="user-email" placeholder="Enter your Email" autocomplete="off" autofocus>
+                <small id="email-msg"></small>
+                <label for="user-password">Password</label>
+                <input type="password" name="password" id="user-password" placeholder="Enter your password." autocomplete="off">
+            </div>
+            <button type="submit" id="sign-in" form="login-form" formmethod="post" formtarget="_blank">Sign In</button>
+            <p>OR</p>
+            <button id="sign-up" type="button">Sign Up</button>
+        </div>
+    </form>
+    <p id="message"></p>
+    <script>
+        const emailInput = document.getElementById("user-email");
+        const submitBtn = document.getElementById("sign-in");
+        const passwordInput = document.getElementById("user-password");
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = 0.6;
+        
+
+        //  Helper function to update the submit button state
+        function checkFormValidity(){
+            const emailValue = emailInput.value;
+            const passwordValue = passwordInput.value;
+
+            if(!emailValue || !passwordValue){
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = 0.6;
+            } else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)){
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = 0.6;
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = 1;
+            }
+            return;
+        }
+
+        // Validating the input email
+        emailInput.addEventListener("input", ()=>{
+            const value = emailInput.value;
+            if(!value){
+                document.getElementById("email-msg").textContent = "This field cannot be empty";
+                document.getElementById("email-msg").style.color = "red";
+                
+            } else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){
+                document.getElementById("email-msg").textContent = "Invalid Email address.";
+                document.getElementById("email-msg").style.color = "red";
+            } else {
+                document.getElementById("email-msg").textContent = "";
+                // document.getElementById("email-msg").style.color = "red";
+            }
+            checkFormValidity();
+            return;
+        });
+
+        // Validating the password
+        passwordInput.addEventListener("input",checkFormValidity);
+
+        // Go to register page
+        document.getElementById("sign-up").addEventListener("click",(e)=>{
+            e.preventDefault();
+            window.open("./register.html", "_self");
+        })
+
+    </script>
+</body>
+
+</html>
