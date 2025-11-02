@@ -62,3 +62,9 @@ build/
 coverage/
 .env.local
 .env.*.local
+
+# -----------------------------
+# UI Designs
+# ------------------------------
+UI Designs/
+.vscode/
